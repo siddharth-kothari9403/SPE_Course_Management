@@ -1,0 +1,15 @@
+{
+    "subject":{
+        "subjectCode": 2,
+        "subjectName": "HOI",
+        "subjectDesc": "Useless"
+    },
+    "student":{
+    "id": 2,
+    "studentName": "Sr",
+    "email": "kk@gmail.com",
+    "phone": "999"
+    },
+    "startDate":"2023-06-19T00:00:00Z",
+    "endDate":"2023-06-20T00:00:00Z"
+}

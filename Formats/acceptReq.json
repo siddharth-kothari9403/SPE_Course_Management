@@ -1,0 +1,42 @@
+{
+    "slno": 1,
+    "student": {
+        "id": 2,
+        "user": {
+            "id": 3,
+            "username": "student",
+            "roles": [
+                {
+                    "id": 3,
+                    "name": "STUDENT"
+                }
+            ]
+        },
+        "studentName": "Sr",
+        "email": "kk@gmail.com",
+        "phone": "999"
+    },
+    "subject": {
+        "subjectCode": 2,
+        "subjectName": "HOI",
+        "subjectDesc": "Useless",
+        "instructor": {
+            "user": {
+                "id": 2,
+                "username": "instructor",
+                "roles": [
+                    {
+                        "id": 2,
+                        "name": "INSTRUCTOR"
+                    }
+                ]
+            },
+            "email": "yp",
+            "phone": "99",
+            "instructor_name": "ABEL Merryweather",
+            "id": 1
+        }
+    },
+    "startDate": "2023-06-19T00:00:00.000+00:00",
+    "endDate": "2023-06-20T00:00:00.000+00:00"
+}
