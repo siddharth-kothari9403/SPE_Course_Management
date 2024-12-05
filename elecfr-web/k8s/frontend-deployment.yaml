@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elecfr-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elecfr-web
+  template:
+    metadata:
+      labels:
+        app: elecfr-web
+    spec:
+      containers:
+      - name: frontend
+        image: your-dockerhub-username/elecfr-web:latest
+        ports:
+        - containerPort: 80
