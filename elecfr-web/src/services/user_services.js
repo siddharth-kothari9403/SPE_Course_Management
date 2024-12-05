@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth_header";
 
-const API_URL = "http://localhost:8080/";
+const API_URL = "http://localhost:8081/";
 
 //function to save a new subject
 export const saveSubject = async(subjectName, subjectDesc) => {
