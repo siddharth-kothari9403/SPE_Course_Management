@@ -5,8 +5,8 @@ FROM maven:3.8.3-openjdk-17 AS builder
 WORKDIR /build
 
 # Copy the Maven project files
-COPY ElectiveManagement/pom.xml .
-COPY ElectiveManagement/src ./src
+COPY pom.xml .
+COPY ./src ./src
 
 # Run Maven build to create the jar file
 RUN mvn clean package -DskipTests
