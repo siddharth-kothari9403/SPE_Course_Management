@@ -1,31 +1,34 @@
 - hosts: localhost
   tasks:
-    - name: Deploy Frontend to Kubernetes
-      k8s:
-        state: present
-        definition: "{{ lookup('file', '../elecfr-web/k8s/frontend-deployment.yaml') }}"
-    
-    - name: Expose Frontend Service
-      k8s:
-        state: present
-        definition: "{{ lookup('file', '../elecfr-web/k8s/frontend-service.yaml') }}"
-    
-    - name: Deploy Backend to Kubernetes
-      k8s:
-        state: present
-        definition: "{{ lookup('file', '../ElectiveManagement/k8s/backend-deployment.yaml') }}"
-    
-    - name: Expose Backend Service
-      k8s:
-        state: present
-        definition: "{{ lookup('file', '../ElectiveManagement/k8s/backend-service.yaml') }}"
-    
+
     - name: Deploy MySQL Database to Kubernetes
       k8s:
         state: present
-        definition: "{{ lookup('file', '../sql/k8s/db-deployment.yaml') }}"
+        definition: "{{ lookup('file', './sql/k8s/db-statefulset.yaml') }}"
     
     - name: Expose MySQL Database Service
       k8s:
         state: present
-        definition: "{{ lookup('file', '../sql/k8s/db-service.yaml') }}"
+        definition: "{{ lookup('file', './sql/k8s/db-service.yaml') }}"
+
+    - name: Deploy Backend to Kubernetes
+      k8s:
+        state: present
+        definition: "{{ lookup('file', './ElectiveManagement/k8s/backend-deployment.yaml') }}"
+    
+    - name: Expose Backend Service
+      k8s:
+        state: present
+        definition: "{{ lookup('file', './ElectiveManagement/k8s/backend-service.yaml') }}"
+
+    - name: Deploy Frontend to Kubernetes
+      k8s:
+        state: present
+        definition: "{{ lookup('file', './elecfr-web/k8s/frontend-deployment.yaml') }}"
+    
+    - name: Expose Frontend Service
+      k8s:
+        state: present
+        definition: "{{ lookup('file', './elecfr-web/k8s/frontend-service.yaml') }}"
+    
+    

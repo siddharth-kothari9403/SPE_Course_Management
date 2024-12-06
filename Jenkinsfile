@@ -120,7 +120,7 @@ pipeline {
         }
         stage('Push to Docker Hub') {
             steps {
-                sh 'echo $DOCKERHUB_CRED_PSW'
+                // sh 'echo $DOCKERHUB_CRED_PSW'
                 sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
                 sh 'docker push siddharthkothari9403/elecfr-web:latest'
                 sh 'docker push siddharthkothari9403/elective-management:latest'
