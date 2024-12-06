@@ -1,20 +1,18 @@
 - hosts: localhost
+  vars:
+    docker_user: siddharthkothari9403
+
   tasks:
 
     - name: Pull Docker images manually
-      command: docker pull {{ item }}
+      command: docker pull {{ docker_user }}/{{ item }}
       loop:
-        - siddharthkothari9403/elecfr-web:latest
-        - siddharthkothari9403/elective-management:latest
-        - siddharthkothari9403/mysql:latest
+        - elecfr-web:latest
+        - elective-management:latest
+        - mysql:latest
 
-    - name: Deploy MySQL StatefulSet to Kubernetes
+    - name: Deploy MySQL StatefulSet to Kubernetes and Export Service
       command: kubectl apply -f db-statefulset.yaml
-      args:
-        chdir: sql/k8s
-
-    - name: Export MySQL Service
-      command: kubectl apply -f db-service.yaml
       args:
         chdir: sql/k8s
     

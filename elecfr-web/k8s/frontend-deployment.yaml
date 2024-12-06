@@ -16,4 +16,4 @@ spec:
       - name: frontend
         image: siddharthkothari9403/elecfr-web:latest
         ports:
-        - containerPort: 80
+        - containerPort: 3000

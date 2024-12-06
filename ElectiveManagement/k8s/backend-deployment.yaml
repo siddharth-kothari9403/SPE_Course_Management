@@ -1,19 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elective-management
+  name: backend-deployment
+  labels:
+    app: backend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: elective-management
+      app: backend
   template:
     metadata:
       labels:
-        app: elective-management
+        app: backend
     spec:
       containers:
       - name: backend
         image: siddharthkothari9403/elective-management:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://db-service:3306/elective_management?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "springstudent"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "springstudent"

@@ -1,36 +1,40 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql-db
+  name: db
 spec:
-  serviceName: "mysql-db-service"
+  serviceName: "db-service"
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-db
+      app: database
   template:
     metadata:
       labels:
-        app: mysql-db
+        app: database
     spec:
       containers:
       - name: mysql
         image: siddharthkothari9403/mysql:latest
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: password
-        - name: MYSQL_DATABASE
-          value: elective_management
         ports:
         - containerPort: 3306
+        env:
+        - name: MYSQL_DATABASE
+          value: "elective_management"
+        - name: MYSQL_USER
+          value: "springstudent"
+        - name: MYSQL_PASSWORD
+          value: "springstudent"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
         volumeMounts:
-        - name: mysql-data
+        - name: db-data
           mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
-      name: mysql-data
+      name: db-data
     spec:
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 10Gi
+          storage: 1Gi
