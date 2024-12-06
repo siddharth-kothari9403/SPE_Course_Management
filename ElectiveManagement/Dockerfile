@@ -18,7 +18,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the jar file from the Maven build stage
-COPY --from=builder /build/target/elective-management.jar /app/elective-management.jar
+COPY --from=builder /build/target/ElectiveManagement-0.0.1-SNAPSHOT.jar /app/elective-management.jar
 
 # Expose the application port
 EXPOSE 8080
