@@ -1,34 +1,32 @@
 - hosts: localhost
   tasks:
 
-    - name: Deploy MySQL Database to Kubernetes
-      k8s:
-        state: present
-        definition: "{{ lookup('file', './sql/k8s/db-statefulset.yaml') }}"
-    
-    - name: Expose MySQL Database Service
-      k8s:
-        state: present
-        definition: "{{ lookup('file', './sql/k8s/db-service.yaml') }}"
+    - name: Deploy MySQL StatefulSet to Kubernetes
+      command: kubectl apply -f db-statefulset.yaml
+      args:
+        chdir: sql/k8s
 
-    - name: Deploy Backend to Kubernetes
-      k8s:
-        state: present
-        definition: "{{ lookup('file', './ElectiveManagement/k8s/backend-deployment.yaml') }}"
+    - name: Export MySQL Service
+      command: kubectl apply -f db-service.yaml
+      args:
+        chdir: sql/k8s
     
-    - name: Expose Backend Service
-      k8s:
-        state: present
-        definition: "{{ lookup('file', './ElectiveManagement/k8s/backend-service.yaml') }}"
+    - name: Deploy Backend Application to Kubernetes
+      command: kubectl apply -f backend-deployment.yaml
+      args:
+        chdir: ElectiveManagement/k8s
 
-    - name: Deploy Frontend to Kubernetes
-      k8s:
-        state: present
-        definition: "{{ lookup('file', './elecfr-web/k8s/frontend-deployment.yaml') }}"
-    
-    - name: Expose Frontend Service
-      k8s:
-        state: present
-        definition: "{{ lookup('file', './elecfr-web/k8s/frontend-service.yaml') }}"
-    
-    
+    - name: Export Backend Service
+      command: kubectl apply -f backend-service.yaml
+      args:
+        chdir: ElectiveManagement/k8s
+
+    - name: Deploy Frontend Application to Kubernetes
+      command: kubectl apply -f frontend-deployment.yaml
+      args:
+        chdir: elecfr-web/k8s
+
+    - name: Export Frontend Service
+      command: kubectl apply -f frontend-service.yaml
+      args:
+        chdir: elecfr-web/k8s

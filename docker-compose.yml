@@ -46,7 +46,7 @@ services:
       MYSQL_DATABASE: elective_management
       MYSQL_USER: springstudent
       MYSQL_PASSWORD: springstudent
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: password
     networks:
       - backend
     volumes:
