@@ -85,12 +85,12 @@ pipeline {
         DOCKER_HUB_REPO = 'siddharthkothari9403' // Docker Hub username or repo name
     }
     stages {
-        stage('Clone Code') {
-            steps {
-                // Clone the repository
-                git 'https://github.com/siddharth-kothari9403/SPE_Course_Management.git' 
-            }
-        }
+        // stage('Clone Code') {
+        //     script {
+        //         // Clone the repository
+        //         sh 'git clone https://github.com/siddharth-kothari9403/SPE_Course_Management.git' 
+        //     }
+        // }
         stage('Build and Tag Images') {
             steps {
                 script {
