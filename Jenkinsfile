@@ -79,11 +79,13 @@
 // }
 
 pipeline {
-    agent any
+    
     environment {
         DOCKER_CREDENTIALS_ID = credentials("Dockerhub-Credentials-ID") // Jenkins credentials ID for Docker Hub
         DOCKER_HUB_REPO = 'siddharthkothari9403' // Docker Hub username or repo name
     }
+
+    agent any
     stages {
         // stage('Clone Code') {
         //     script {
@@ -118,6 +120,7 @@ pipeline {
         }
         stage('Push to Docker Hub') {
             steps {
+                sh 'echo $DOCKERHUB_CRED_PSW'
                 sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
                 sh 'docker push siddharthkothari9403/elecfr-web:latest'
                 sh 'docker push siddharthkothari9403/elective-management:latest'
