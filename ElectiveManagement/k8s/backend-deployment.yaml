@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://db-service:3306/elective_management?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false"
+              value: "jdbc:mysql://db-service:3306/elective_management"
             - name: SPRING_DATASOURCE_USERNAME
               value: "springstudent"
             - name: SPRING_DATASOURCE_PASSWORD
