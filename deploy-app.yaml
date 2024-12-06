@@ -1,6 +1,13 @@
 - hosts: localhost
   tasks:
 
+    - name: Pull Docker images manually
+      command: docker pull {{ item }}
+      loop:
+        - siddharthkothari9403/elecfr-web:latest
+        - siddharthkothari9403/elective-management:latest
+        - siddharthkothari9403/mysql:latest
+
     - name: Deploy MySQL StatefulSet to Kubernetes
       command: kubectl apply -f db-statefulset.yaml
       args:
