@@ -81,7 +81,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_CREDENTIALS_ID = 'Dockerhub-Credentials-ID' // Jenkins credentials ID for Docker Hub
+        DOCKER_CREDENTIALS_ID = credentials("Dockerhub-Credentials-ID") // Jenkins credentials ID for Docker Hub
         DOCKER_HUB_REPO = 'siddharthkothari9403' // Docker Hub username or repo name
     }
     stages {
@@ -124,7 +124,7 @@ pipeline {
                 sh 'docker push siddharthkothari9403/mysql:latest'
             }
         }
-        
+
         stage('Deploy with Docker Compose and Ansible') {
             steps {
                 script {
