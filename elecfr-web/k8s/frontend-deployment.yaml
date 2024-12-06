@@ -13,7 +13,21 @@ spec:
         app: elecfr-web
     spec:
       containers:
-      - name: frontend
-        image: siddharthkothari9403/elecfr-web:latest
-        ports:
-        - containerPort: 3000
+        - name: elecfr-web
+          image: siddharthkothari9403/elecfr-web
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elecfr-web-service
+spec:
+  selector:
+    app: elecfr-web
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort
+

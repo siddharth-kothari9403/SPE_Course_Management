@@ -21,17 +21,17 @@
       args:
         chdir: ElectiveManagement/k8s
 
-    - name: Export Backend Service
-      command: kubectl apply -f backend-service.yaml
-      args:
-        chdir: ElectiveManagement/k8s
+    # - name: Export Backend Service
+    #   command: kubectl apply -f backend-service.yaml
+    #   args:
+    #     chdir: ElectiveManagement/k8s
 
     - name: Deploy Frontend Application to Kubernetes
       command: kubectl apply -f frontend-deployment.yaml
       args:
         chdir: elecfr-web/k8s
 
-    - name: Export Frontend Service
-      command: kubectl apply -f frontend-service.yaml
-      args:
-        chdir: elecfr-web/k8s
+    # - name: Export Frontend Service
+    #   command: kubectl apply -f frontend-service.yaml
+    #   args:
+    #     chdir: elecfr-web/k8s
