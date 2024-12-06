@@ -1,5 +1,5 @@
 # Use Maven to build the Spring Boot application
-FROM maven:3.8.8-openjdk-17-slim AS builder
+FROM maven:3.8.3-openjdk-17 AS builder
 
 # Set working directory
 WORKDIR /build
