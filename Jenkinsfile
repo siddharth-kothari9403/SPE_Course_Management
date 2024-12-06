@@ -91,31 +91,40 @@ pipeline {
         //         sh 'git clone https://github.com/siddharth-kothari9403/SPE_Course_Management.git' 
         //     }
         // }
-        
+
 
         stage('Build and Tag Images') {
             steps {
-                script {
-                    // Use Docker Compose to build images
-                    sh """
-                        docker-compose -f docker-compose.yml build \
-                        --build-arg DOCKER_HUB_REPO=$DOCKER_HUB_REPO
-                    """
+                // script {
+                //     // Use Docker Compose to build images
+                //     sh """
+                //         docker-compose -f docker-compose.yml build \
+                //         --build-arg DOCKER_HUB_REPO=$DOCKER_HUB_REPO
+                //     """
+                // }
+
+                dir('sql') {
+                    sh 'docker build -t siddharthkothari9403/mysql:latest .'
+                }
+
+                dir('ElectiveManagement') {
+                    sh 'docker build -t siddharthkothari9403/elective-management:latest .'
+                }
+
+                dir('elecfr-web') {
+                    sh 'docker build -t siddharthkothari9403/elecfr-web:latest .'
                 }
             }
         }
         stage('Push to Docker Hub') {
             steps {
-                script {
-                    // Login to Docker Hub and push images using docker-compose
-                    docker.withRegistry('', DOCKER_CREDENTIALS_ID) {
-                        sh """
-                           docker-compose -f docker-compose.yaml push
-                        """
-                    }
-                }
+                sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+                sh 'docker push siddharthkothari9403/elecfr-web:latest'
+                sh 'docker push siddharthkothari9403/elective-management:latest'
+                sh 'docker push siddharthkothari9403/mysql:latest'
             }
         }
+        
         stage('Deploy with Docker Compose and Ansible') {
             steps {
                 script {
