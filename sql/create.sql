@@ -46,7 +46,7 @@ CREATE TABLE request(
     student_id INTEGER,
     subject_code INTEGER,
     start_date timestamp NOT NULL DEFAULT current_timestamp(),
-    end_date timestamp DEFAULT NULL,
+    end_date timestamp NOT NULL DEFAULT current_timestamp(),
     constraint pk_request PRIMARY KEY (slno)
 );
 CREATE TABLE student_subject(
@@ -54,7 +54,7 @@ CREATE TABLE student_subject(
     student_id INTEGER,
     subject_code INTEGER,
     start_date timestamp NOT NULL DEFAULT current_timestamp(),
-    end_date timestamp DEFAULT NULL,
+    end_date timestamp NOT NULL DEFAULT current_timestamp(),
     constraint pk_cust_cab PRIMARY KEY (slno)
 );
 ALTER TABLE user_roles

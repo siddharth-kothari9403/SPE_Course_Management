@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/request")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://192.168.49.2:30007")
 // contains and manages all the endpoints pertaining to requests.
 public class RequestController {
 

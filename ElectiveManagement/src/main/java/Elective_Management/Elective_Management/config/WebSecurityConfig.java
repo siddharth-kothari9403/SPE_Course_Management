@@ -50,7 +50,7 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((configurer)->{
-                    configurer.requestMatchers("/authenticate").permitAll()
+                    configurer.requestMatchers("/authenticate", "/dummy_student", "/dummy_admin", "/dummy_instructor").permitAll()
                             .requestMatchers(HttpMethod.POST,"/register_student", "/register_admin", "/register_instructor").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.GET,"/student/getAll").hasAnyRole("INSTRUCTOR","ADMIN")
                             .requestMatchers(HttpMethod.GET,"/student/getbyID/**").permitAll()

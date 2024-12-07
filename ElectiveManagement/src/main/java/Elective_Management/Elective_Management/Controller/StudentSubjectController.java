@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/studentSubject")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://192.168.49.2:30007")
 // contains and managees all the endpoints pertaining to studnesubject.
 public class StudentSubjectController {
     private StudentSubjectService studentSubjectService;

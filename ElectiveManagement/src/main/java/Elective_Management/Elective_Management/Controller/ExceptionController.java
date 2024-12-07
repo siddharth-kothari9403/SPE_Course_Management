@@ -12,7 +12,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 // all the handlers handle specific exceptions and return appropriate error messages
 
 @ControllerAdvice
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://192.168.49.2:30007")
 public class ExceptionController {
     @ExceptionHandler(value = StudentSubjectNotFoundException.class)
     public ResponseEntity<Object> customerCabNotFound(StudentSubjectNotFoundException studentSubjectNotFoundException){

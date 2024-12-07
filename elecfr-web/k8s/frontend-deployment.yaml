@@ -15,6 +15,7 @@ spec:
       containers:
         - name: elecfr-web
           image: siddharthkothari9403/elecfr-web
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
 ---
@@ -29,5 +30,6 @@ spec:
     - protocol: TCP
       port: 3000
       targetPort: 3000
+      nodePort: 30007
   type: NodePort
 
