@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 // managed using appropriate configuration methods
 
 @RestController
-@CrossOrigin(origins = "http://192.168.49.2:30007")
+@CrossOrigin(origins = "http://192.168.58.2:30007")
 public class AuthorizationController {
 
     @Autowired

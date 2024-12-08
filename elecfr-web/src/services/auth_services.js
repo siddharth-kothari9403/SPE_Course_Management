@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from './auth_header';
 
 //the requests to the backend are sent to this port
-const API_URL = "http://192.168.49.2:30008/";
+const API_URL = "http://192.168.58.2:30008/";
 
 //login function, takes username and password and returns the user object along with the token to the user
 //which is then stored in local storage

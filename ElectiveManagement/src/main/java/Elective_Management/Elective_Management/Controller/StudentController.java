@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student")
-@CrossOrigin(origins = "http://192.168.49.2:30007")
+@CrossOrigin(origins = "http://192.168.58.2:30007")
 public class StudentController {
     private StudentService studentService;
     private JwtTokenUtil jwtTokenUtil;

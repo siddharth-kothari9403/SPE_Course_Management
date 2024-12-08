@@ -3,6 +3,7 @@ pipeline {
     environment {
         DOCKERHUB_CRED = credentials("Dockerhub-Credentials-ID") // Jenkins credentials ID for Docker Hub
         DOCKER_HUB_REPO = 'siddharthkothari9403' // Docker Hub username or repo name
+        MINIKUBE_HOME = '/home/jenkins/.minikube'
     }
 
     agent any

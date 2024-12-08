@@ -12,7 +12,7 @@ import java.util.List;
 //controller for all the methods related to subjects
 @RestController
 @RequestMapping("/subject")
-@CrossOrigin(origins = "http://192.168.49.2:30007")
+@CrossOrigin(origins = "http://192.168.58.2:30007")
 public class SubjectController {
 
     private SubjectService subjectService;
