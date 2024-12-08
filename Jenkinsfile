@@ -55,11 +55,5 @@ pipeline {
                 }
             }
         }
-        
-        stage('Verify Workspace') {
-            steps {
-                sh 'ls -R'  // List all files in the workspace recursively
-            }
-        }
     }
 }
