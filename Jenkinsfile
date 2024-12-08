@@ -42,6 +42,12 @@ pipeline {
             }
         }
 
+        stage('Start Minikube') {
+            steps{
+                sh "minikube start"
+            }
+        }
+
         stage('Deploy with Docker Compose and Ansible') {
             steps {
                 script {
