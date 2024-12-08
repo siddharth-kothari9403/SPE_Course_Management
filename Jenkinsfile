@@ -60,7 +60,6 @@ pipeline {
         stage("Deploy Ansible Vault with Kubernetes"){
             steps {
                 sh '''
-                cd Talent_Bridge_K8s
                 echo "$VAULT_PASS" > /tmp/vault_pass.txt
                 chmod 600 /tmp/vault_pass.txt
                 ansible-playbook -i inventory --vault-password-file /tmp/vault_pass.txt deploy-app.yaml
