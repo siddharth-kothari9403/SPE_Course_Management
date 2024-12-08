@@ -4,6 +4,7 @@ pipeline {
         DOCKERHUB_CRED = credentials("Dockerhub-Credentials-ID") // Jenkins credentials ID for Docker Hub
         DOCKER_HUB_REPO = 'siddharthkothari9403' // Docker Hub username or repo name
         MINIKUBE_HOME = '/home/jenkins/.minikube'
+        VAULT_PASS = credentials("ansible_vault_pass")
     }
 
     agent any
@@ -43,17 +44,30 @@ pipeline {
             }
         }
 
-        stage('Deploy with Docker Compose and Ansible') {
+        // stage('Deploy with Docker Compose and Ansible') {
+        //     steps {
+        //         script {
+        //             // Optionally, use Ansible for deployment
+        //             ansiblePlaybook(
+        //                 playbook: 'deploy-app.yaml',
+        //                 inventory: 'inventory',
+        //                 // credentialsId: 'ansible-ssh-credentials' // Jenkins SSH credentials ID
+        //             )
+        //         }
+        //     }
+        // }
+
+        stage("Deploy Ansible Vault with Kubernetes"){
             steps {
-                script {
-                    // Optionally, use Ansible for deployment
-                    ansiblePlaybook(
-                        playbook: 'deploy-app.yaml',
-                        inventory: 'inventory',
-                        // credentialsId: 'ansible-ssh-credentials' // Jenkins SSH credentials ID
-                    )
-                }
+                sh '''
+                cd Talent_Bridge_K8s
+                echo "$VAULT_PASS" > /tmp/vault_pass.txt
+                chmod 600 /tmp/vault_pass.txt
+                ansible-playbook -i inventory --vault-password-file /tmp/vault_pass.txt deploy-app.yaml
+                rm -f /tmp/vault_pass.txt
+                '''
             }
+
         }
     }
 }

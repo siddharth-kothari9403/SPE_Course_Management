@@ -20,6 +20,11 @@
       command: kubectl apply -f backend-deployment.yaml
       args:
         chdir: ElectiveManagement/k8s
+    
+    - name: Deploy Backend Horizontal Pod Autoscaler
+      command: kubectl apply -f backend-hpa.yaml
+      args:
+        chdir: ElectiveManagement/k8s
 
     # - name: Export Backend Service
     #   command: kubectl apply -f backend-service.yaml
@@ -28,6 +33,11 @@
 
     - name: Deploy Frontend Application to Kubernetes
       command: kubectl apply -f frontend-deployment.yaml
+      args:
+        chdir: elecfr-web/k8s
+    
+    - name: Deploy Frontend Horizontal Pod Autoscaler
+      command: kubectl apply -f frontend-hpa.yaml
       args:
         chdir: elecfr-web/k8s
 
