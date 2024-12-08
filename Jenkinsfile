@@ -1,8 +1,8 @@
 pipeline {
     
     environment {
-        DOCKERHUB_CRED = credentials("Dockerhub-Credentials-ID") // Jenkins credentials ID for Docker Hub
-        DOCKER_HUB_REPO = 'siddharthkothari9403' // Docker Hub username or repo name
+        DOCKERHUB_CRED = credentials("Dockerhub-Credentials-ID")
+        DOCKER_HUB_REPO = 'siddharthkothari9403'
         MINIKUBE_HOME = '/home/jenkins/.minikube'
         VAULT_PASS = credentials("ansible_vault_pass")
     }
@@ -12,15 +12,12 @@ pipeline {
 
         stage('Build and Tag Images') {
             steps {
-
                 dir('sql') {
                     sh "docker build -t ${DOCKER_HUB_REPO}/mysql:latest ."
                 }
-
                 dir('ElectiveManagement') {
                     sh "docker build -t ${DOCKER_HUB_REPO}/elective-management:latest ."
                 }
-
                 dir('elecfr-web') {
                     sh "docker build -t ${DOCKER_HUB_REPO}/elecfr-web:latest ."
                 }
@@ -44,19 +41,6 @@ pipeline {
             }
         }
 
-        // stage('Deploy with Docker Compose and Ansible') {
-        //     steps {
-        //         script {
-        //             // Optionally, use Ansible for deployment
-        //             ansiblePlaybook(
-        //                 playbook: 'deploy-app.yaml',
-        //                 inventory: 'inventory',
-        //                 // credentialsId: 'ansible-ssh-credentials' // Jenkins SSH credentials ID
-        //             )
-        //         }
-        //     }
-        // }
-
         stage("Deploy Ansible Vault with Kubernetes"){
             steps {
                 sh '''
@@ -66,7 +50,6 @@ pipeline {
                 rm -f /tmp/vault_pass.txt
                 '''
             }
-
         }
     }
 }

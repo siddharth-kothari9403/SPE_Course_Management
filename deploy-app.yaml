@@ -1,47 +1,10 @@
+---
 - hosts: localhost
   vars:
     docker_user: siddharthkothari9403
 
-  tasks:
-
-    - name: Pull Docker images manually
-      command: docker pull {{ docker_user }}/{{ item }}
-      loop:
-        - elecfr-web:latest
-        - elective-management:latest
-        - mysql:latest
-
-    - name: Deploy MySQL StatefulSet to Kubernetes and Export Service
-      command: kubectl apply -f db-statefulset.yaml
-      args:
-        chdir: sql/k8s
-    
-    - name: Deploy Backend Application to Kubernetes
-      command: kubectl apply -f backend-deployment.yaml
-      args:
-        chdir: ElectiveManagement/k8s
-    
-    - name: Deploy Backend Horizontal Pod Autoscaler
-      command: kubectl apply -f backend-hpa.yaml
-      args:
-        chdir: ElectiveManagement/k8s
-
-    # - name: Export Backend Service
-    #   command: kubectl apply -f backend-service.yaml
-    #   args:
-    #     chdir: ElectiveManagement/k8s
-
-    - name: Deploy Frontend Application to Kubernetes
-      command: kubectl apply -f frontend-deployment.yaml
-      args:
-        chdir: elecfr-web/k8s
-    
-    - name: Deploy Frontend Horizontal Pod Autoscaler
-      command: kubectl apply -f frontend-hpa.yaml
-      args:
-        chdir: elecfr-web/k8s
-
-    # - name: Export Frontend Service
-    #   command: kubectl apply -f frontend-service.yaml
-    #   args:
-    #     chdir: elecfr-web/k8s
+  roles:
+    - pull-docker-images
+    - deploy-db
+    - deploy-backend
+    - deploy-frontend

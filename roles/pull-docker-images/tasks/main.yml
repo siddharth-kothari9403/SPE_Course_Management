@@ -1,0 +1,8 @@
+---
+# Pull Docker images manually
+- name: Pull Docker images
+  command: docker pull {{ docker_user }}/{{ item }}
+  loop:
+    - elecfr-web:latest
+    - elective-management:latest
+    - mysql:latest
